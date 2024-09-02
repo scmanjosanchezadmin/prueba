@@ -1,5 +1,7 @@
+// index.js
 const express = require('express');
 const cors = require('cors'); // Importa CORS
+
 const app = express();
 const PORT = 3000;
 

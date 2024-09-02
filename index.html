@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir API con HTML</title>
+</head>
+<body>
+    <h1>Lista de Elementos</h1>
+    <ul id="lista-elementos"></ul>
+
+    <script>
+        // Función para consumir la API y mostrar los datos
+        function obtenerElementos() {
+            fetch('http://localhost:3000/elementos')
+                .then(response => response.json())
+                .then(data => {
+                    const lista = document.getElementById('lista-elementos');
+                    data.forEach(elemento => {
+                        const li = document.createElement('li');
+                        li.textContent = `${elemento.id}: ${elemento.nombre}`;
+                        lista.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error al consumir la API:', error));
+        }
+
+        // Llamar a la función para obtener los elementos cuando la página cargue
+        window.onload = obtenerElementos;
+    </script>
+</body>
+</html>
